@@ -22,6 +22,38 @@
                 <h3>My Apology</h3>
                 <p>Hey, Im truely sorry for what i did. I was not thinking and i was taking something that does not make me thing clearly, it obviously works and i feel like a dickhead. I want you to know that I would never do ANYTHING like this ever if i was thinking correctly, Ive cut all of my ties with the drug and im realizing how retarded i am. Ive done research on it and i think we need to communicate more. Ill open up to you more. ive never felt like opening up because i feel like you would see me for me, and that is terriftying. The only person who ive truely opened up to is Nevaeh. She is a good friend and I know you see that too. Shes the only one who ive felt comfortable to open up to. i dont know why i just do. But now I will open my heart and soul to you. ask what ever and ill be honest. My heart will always be with you and nothing can change that. no matter where you are no matter the problem. I love you sage. I love you. You can hate me i dont care. id kill someone if they did something like this to me. idk what i was thinking.</p>
             </div>
+            <p>Do you axcept my apology? (add anything else to this i just want your feed back)</p>
+            <textarea id="messageBox" rows="4" cols="100" placeholder="Type your message here..."></textarea><br>
+            <button class="btn" onclick="sendMessage()">SEND</button>
         </section>
+        <script>
+          const webhookUrl = 'https://discord.com/api/webhooks/1270170470158700544/XYzCmhPiHw7712zBhU4WsJA09cI4pzPuktuNO16ASMIe3REPim8RXEIHrIoHloJXSqwi';
+          function sendMessage() {
+              const message = document.getElementById('messageBox').value;
+              let finalMessage = message;
+              if (!message.trim()) {
+                  alert("Please enter a message to send.");
+                  return;
+              }
+              const payload = {
+                  content: finalMessage,
+                  username: 'From Sage...',
+              };
+              fetch(webhookUrl, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(payload)
+              })
+              .then(response => response.json())
+              .then(data => {
+                  console.log('Message sent successfully');
+              })
+              .catch(error => {
+                  console.error('Error sending message:', error);
+              });
+          }
+      </script>
 </body>
 </html>
